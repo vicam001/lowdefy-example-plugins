@@ -1,4 +1,4 @@
-lowdefy: 4.0.0-rc.5 # Please check for latest Lowdefy version.
+lowdefy: 4.0.0-rc.10 # Please check for latest Lowdefy version.
 license: MIT
 
 plugins:
@@ -7,27 +7,24 @@ plugins:
   - name: 'plugin-times-eleven-operator'
     version: 'workspace:*'
 
+app:
+  html:
+    appendHead:
+      _ref: head.html
+
 pages:
   - id: plugin-example
     type: Box
     blocks:
-      - id: number
-        type: NumberInput
+      - id: docsearch
+        type: DocSearch
+        layout:
+          flex: 0 1 auto
+          align: middle
         properties:
-          title: Type a number
-      - id: result
-        type: Html
-        properties:
-          html:
-            _nunjucks:
-              template: |
-                {% if number != null %}
-                  {{ number }} times eleven is: {{ result }}
-                {% endif %}
-              on:
-                number:
-                  _state: number
-                result:
-                  _times_eleven:
-                    number:
-                      _state: number
+          appId:
+            _build.env: DOCSEARCH_APP_ID
+          indexName:
+            _build.env: DOCSEARCH_INDEX
+          apiKey:
+            _build.env: DOCSEARCH_API_KEY

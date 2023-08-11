@@ -1,12 +1,6 @@
 lowdefy: 4.0.0-rc.10 # Please check for latest Lowdefy version.
 license: MIT
 
-plugins:
-  - name: 'plugin-name'
-    version: 'workspace:*'
-  - name: 'plugin-times-eleven-operator'
-    version: 'workspace:*'
-
 app:
   html:
     appendHead:

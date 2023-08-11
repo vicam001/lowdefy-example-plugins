@@ -38,7 +38,11 @@
       "dist/*"
     ],
     "scripts": {
-      "build": "swc src --out-dir dist --config-file ../../.swcrc --delete-dir-on-start --copy-files",
+      "build": "swc src --out-dir dist --config-file ../../.swcrc --delete-dir-on-start && pnpm copyfiles",
+      "clean": "rm -rf dist",
+      "copyfiles": "copyfiles -u 1 \"./src/**/*\" dist -e \"./src/**/*.js\" -e \"./src/**/*.yaml\" -e \"./src/**/*.snap\"",
+      "prepublishOnly": "pnpm build",
+      "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
       "prepare": "pnpm build"
     },
     "dependencies": {
